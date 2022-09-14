@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { present } from '@ionic/core/dist/types/utils/overlays';
 import { PostService } from 'src/services/post.service';
 
 @Component({
@@ -10,10 +9,8 @@ import { PostService } from 'src/services/post.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
-  usuario: string="";
-  senha: string="";
-
+usuario: string="";
+senha: string=""; 
   constructor(
     private service: PostService,
     private router: Router,
@@ -34,10 +31,11 @@ export class LoginPage implements OnInit {
     this.service.dadosApi(dados,'usuario.php').subscribe( async data =>{
       console.log(data)
       if(data['success']){
-        if(data['result']['nivel']=='admin' || data['result']['nivel']=='caixa')
+        if(data['result']['nivel']=='admin' || data['result']['nivel']=='caixa'){
             this.router.navigate(['usuarios']);
-      else
+      }else{
         this.router.navigate(['folder']);
+      }
         const toast = await this.toastCtrl.create({
           message: "Login efetuado com sucesso",
           position: 'top',
@@ -47,7 +45,7 @@ export class LoginPage implements OnInit {
         toast.present();
       }else{
         const toast = await this.toastCtrl.create({
-          message: data['result'],
+          message: data['msg'],
           position: 'bottom',
           color:'danger',
           duration:2500
