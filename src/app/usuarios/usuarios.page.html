@@ -31,7 +31,24 @@
         Editar
       </ion-item-option>
     </ion-item-options>
-    <ion-item *ngIf="user.ativo=='1'" color="tertiary"><ion-label>{{user.nome}}</ion-label></ion-item>
+    <ion-item><ion-label *ngIf="user.ativo==1" color="tertiary">{{user.nome}}</ion-label></ion-item>
+    <ion-item><ion-label *ngIf="user.ativo==0">{{user.nome}}</ion-label></ion-item>
+  
+    <ion-item-options side="end">
+      <ion-item-option (click)="mostar(user.id, user.nome, user.usuario, user.nivel)">
+        Mostar
+      </ion-item-option>
+
+      <ion-item-option *ngIf="user.ativo==0" color="danger" (click)="ativar(user.id, user.ativo)">
+        Ativar
+      </ion-item-option>
+
+      <ion-item-option *ngIf="user.ativo==1" (click)="desativar(user.id, user.ativo)">
+        Desativar
+      </ion-item-option>
+    
+    </ion-item-options>
+
   </ion-item-sliding>
 </ion-list>
 </ion-content>

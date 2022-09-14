@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { promise } from 'protractor';
 import { PostService } from 'src/services/post.service';
 
@@ -13,7 +14,8 @@ limite: number = 10;
 inicial: number = 0;
 usuarios: any = [];// define uma matriz vazia  
 constructor(
-  private service: PostService
+  private service: PostService,
+  private router: Router
 ) { }
 
   ngOnInit() {
@@ -25,7 +27,7 @@ constructor(
     this.carregar();
   }
   addUsuario(){
-
+    this.router.navigate(['add-usuario']);
   }
   carregar() {
     return new Promise(ret =>{
@@ -50,7 +52,12 @@ constructor(
   }//fim do metodo carregar
 
   editar(id, nome, usuario, senha_original, nivel){
-    
+    this.router.navigate(['add-usuario/'+id+'/'+nome+'/'+usuario+'/'+senha_original+'/'+nivel]);
   }
+  mostrar(id, nome, usuario, nivel){
+    this.router.navigate(['mostar-usuario/'+id+'/'+nome+'/'+usuario+'/'+nivel]);
+}
+  ativar(id, ativo){
 
+}
 }
