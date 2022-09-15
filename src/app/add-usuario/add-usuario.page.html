@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button>
+          <ion-menu-button></ion-menu-button>
+          <ion-back-button></ion-back-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="id==0">Novo Usuário</ion-title>
+    <ion-title *ngIf="id>0">Editar Usuário</ion-title>
+    <ion-buttons slot="primary" (click)="addUsuario()">
+      <ion-button>Novo
+        <ion-icon slot="end" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content>
