@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button>
+          <ion-menu-button></ion-menu-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Lista de Eventos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-row class="ion-padding" style="background-color: rgba(0, 0, 0, 0.2);">
+  <ion-input placeholder="Buscar" [(ngModel)]="nome" type="search" (input)="carregar_eve()" required></ion-input>
+  <ion-buttons (click)="carregar_eve()">
+    <ion-button>
+      <ion-icon slot="end" name="search"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  </ion-row>
+  
+  <ion-content>
+    <ion-list>
+      <ion-item-sliding *ngFor="let even of eventos">
+        <ion-item-options side="start">
+          <ion-item-option (click)="editar(even.id, even.nome, even.data, even.capacidade, even.ativo, even.usuario_id)">
+            Editar
+          </ion-item-option>
+        </ion-item-options>
+        <ion-item *ngIf="even.ativo==1"><ion-label color="primary">{{even.nome}}</ion-label></ion-item>
+        <ion-item *ngIf="even.ativo==0"><ion-label color="danger">{{even.nome}}</ion-label></ion-item>
+    
+        <ion-item-options side="end">
+          <ion-item-option color="success" (click)="mostrar(even.id, even.nome, even.data, even.capacidade, even.ativo, even.usuario_id)">
+            Mostrar
+          </ion-item-option>
+    
+          <ion-item-option *ngIf="user.ativo==0" color="success" (click)="ativar(even.id, even.ativo)">
+            Ativar
+          </ion-item-option>
+    
+          <ion-item-option *ngIf="user.ativo==1" color="danger" (click)="alertaexclusao(even.id, even.usuario_id)">
+            Desativar
+          </ion-item-option>
+    
+        </ion-item-options>
+      
+      </ion-item-sliding>
+    </ion-list>
+    </ion-content>

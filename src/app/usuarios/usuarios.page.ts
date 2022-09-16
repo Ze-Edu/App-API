@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { PostService } from 'src/services/post.service';
 
 @Component({
@@ -14,7 +15,8 @@ inicial: number = 0;
 usuarios: any = [];// define uma matriz vazia  
 constructor(
   private service: PostService,
-  private router: Router
+  private router: Router,
+  private alertCtr: AlertController
 ) { }
 
   ngOnInit() {
@@ -54,7 +56,7 @@ constructor(
     this.router.navigate(['add-usuario/'+id+'/'+nome+'/'+usuario+'/'+senha_original+'/'+nivel]);
   }
   mostrar(id, nome, usuario, nivel){
-    this.router.navigate(['mostar-usuario/'+id+'/'+nome+'/'+usuario+'/'+nivel]);
+    this.router.navigate(['mostrar-usuario/'+id+'/'+nome+'/'+usuario+'/'+nivel]);
 }
 
 ativar(id, ativo){
@@ -81,4 +83,37 @@ ativar(id, ativo){
     });
   };
 }
+
+  async alertaexclusao(id, usuario){
+    const alert = await this.alertCtr.create({
+      header:'Confirmação de exclusão do usuário ' + usuario,
+      buttons:[{
+        text: 'Cancelar', role:'Cancel', cssClass:'light',
+        handler:()=>{
+          //ação caso o usuário clique em cancelar
+
+        }},{
+          text:'Ok',
+          handler:()=>{
+            this.ativar(id, 1);
+          }
+        }
+    ]
+    });
+    alert.present();
+  } 
+async mostrarnivel(usuario, nivel){
+  const alert = await this.alertCtr.create({
+    header: usuario + ' está no nível ', 
+    message: '<h3>'+nivel+'</h3>',
+    buttons:[{
+      text: 'Voltar', role:'Cancel', cssClass:'light',
+      handler:()=>{
+        //ação caso o usuário clique em cancelar
+
+      }}]
+  });
+  alert.present();
+}
+
 }
