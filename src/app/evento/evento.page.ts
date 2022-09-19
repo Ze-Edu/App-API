@@ -9,6 +9,7 @@ import { PostService } from 'src/services/post.service';
   styleUrls: ['./evento.page.scss'],
 })
 export class EventoPage implements OnInit {
+  id: number;
   nome: string = "";
   limite: number = 10;
   inicial: number = 0;
@@ -28,7 +29,7 @@ export class EventoPage implements OnInit {
       this.carregar_eve();
     }
     addEvento(){
-      this.router.navigate(['add_evento']);
+      this.router.navigate(['add-evento']);
     }
     carregar_eve() {
       return new Promise(ret =>{
@@ -52,11 +53,11 @@ export class EventoPage implements OnInit {
       });
     }//fim do metodo carregar
   
-    editar(id, nome, data, capacidade, ativo, usuario_id){
-      this.router.navigate(['add_evento/'+id+'/'+nome+'/'+data+'/'+capacidade+'/'+ativo+'/'+usuario_id]);
+    editar_eve(id, nome, data, capacidade, usuario_id){
+      this.router.navigate(['add-evento/'+id+'/'+nome+'/'+data+'/'+capacidade+'/'+usuario_id]);
     }
-    mostrar(id, nome, data, capacidade, ativo, usuario_id){
-      this.router.navigate(['mostrar-evento/'+id+'/'+nome+'/'+data+'/'+capacidade+'/'+ativo+'/'+usuario_id]);
+    mostrar_eve(id, nome, data, capacidade, usuario_id){
+      this.router.navigate(['mostrar-evento/'+id+'/'+nome+'/'+data+'/'+capacidade+'/'+usuario_id]);
   }
   
   ativar(id, ativo){
@@ -84,9 +85,9 @@ export class EventoPage implements OnInit {
     };
   }
   
-    async alertaexclusao(id, nome_eve){
+    async alertaexclusao(id, usuario_id){
       const alert = await this.alertCtr.create({
-        header:'Confirmação de exclusão do evento ' + nome_eve,
+        header:'Confirmação de exclusão do evento do usuário ' + usuario_id,
         buttons:[{
           text: 'Cancelar', role:'Cancel', cssClass:'light',
           handler:()=>{

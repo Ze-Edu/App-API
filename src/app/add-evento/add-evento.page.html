@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button>
+          <ion-menu-button></ion-menu-button>
+          <ion-back-button></ion-back-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="!usuario_id">Novo Evento</ion-title>
+    <ion-title *ngIf="usuario_id">Editar Evento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+
+  <!-- campo nome -->
+      <ion-item>
+        <ion-label position="floating">Nome</ion-label>
+        <ion-input type="text" [(ngModel)]="nome"></ion-input>
+      </ion-item>
+  <!-- campo data -->
+  <ion-item>
+    <ion-label position="floating">Data</ion-label>
+    <ion-input type="text" [(ngModel)]="data"></ion-input>
+  </ion-item>
+  <!-- campo capacidade -->
+  <ion-item>
+    <ion-label position="floating">Capacidade</ion-label>
+    <ion-input type="number" [(ngModel)]="capacidade"></ion-input>
+  </ion-item>
+  <!-- campo usuario_id -->
+  <ion-item>
+    <ion-label>Usuário Responsável</ion-label>
+    <ion-select placeholder="Selecione" [(ngModel)]="id">
+      <ion-select-option value="{{user.id}}" *ngFor="let user of usuarios">{{user.nome}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button *ngIf="!usuario_id" color="success" expand="block" (click)="cadastrar_eve()">
+    Adicionar
+  </ion-button>
+  <ion-button *ngIf="usuario_id" color="primary" expand="block" (click)="editar_eve()">
+    Atualizar
+  </ion-button>
+
+</ion-content>
+

@@ -9,10 +9,9 @@ import { ActivatedRoute } from '@angular/router';
 export class MostrarEventoPage implements OnInit {
   id: number;
   nome: string='';
-  data: string='';
-  capacidade: string='';
-  ativo: number;
-  usuario_id: string='';
+  data: number;
+  capacidade: number;
+  usuario_id: number;
     constructor(
       private actRoute: ActivatedRoute
     ) { }
@@ -22,8 +21,7 @@ export class MostrarEventoPage implements OnInit {
         this.id = darota.id;
         this.nome = darota.nome;
         this.data = darota.data;
-        this.capacidade = darota.nivel;
-        this.ativo = darota.usuario_id;
+        this.capacidade = darota.capacidade;
         this.usuario_id = darota.usuario_id;
       })
     }
