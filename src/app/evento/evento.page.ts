@@ -9,7 +9,6 @@ import { PostService } from 'src/services/post.service';
   styleUrls: ['./evento.page.scss'],
 })
 export class EventoPage implements OnInit {
-  id: number;
   nome: string = "";
   limite: number = 10;
   inicial: number = 0;
@@ -40,7 +39,7 @@ export class EventoPage implements OnInit {
           limit: this.limite,
           start: this.inicial
         };
-        this.service.dadosApi(dados,'evento.php').subscribe(data=>{
+        this.service.dadosApi(dados,'api_evento.php').subscribe(data=>{
   
           if(data['result']=='0'){
               this.ionViewWillEnter();
@@ -67,7 +66,7 @@ export class EventoPage implements OnInit {
           requisicao:'excluir_evento',
           id: id,
         };
-        this.service.dadosApi(dados, "evento.php").subscribe(data=>{
+        this.service.dadosApi(dados, "api_evento.php").subscribe(data=>{
           this.ionViewWillEnter();
         })
       });
@@ -78,7 +77,7 @@ export class EventoPage implements OnInit {
           requisicao:'ativar_evento',
           id: id,
         };
-        this.service.dadosApi(dados, "evento.php").subscribe(data=>{
+        this.service.dadosApi(dados, "api_evento.php").subscribe(data=>{
           this.ionViewWillEnter();
         })
       });

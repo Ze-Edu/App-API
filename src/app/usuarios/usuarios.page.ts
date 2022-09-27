@@ -30,27 +30,27 @@ constructor(
   addUsuario(){
     this.router.navigate(['add-usuario']);
   }
-  carregar() {
+  carregar(){
     return new Promise(ret =>{
       this.usuarios=[];
       let dados = {
-        requisicao: "listar",
-        nome: this.nome,
-        limit: this.limite,
-        start: this.inicial
+        requisicao:"listar",
+        nome:this.nome, 
+        limit:this.limite,
+        start:this.inicial
       };
-      this.service.dadosApi(dados,'usuario.php').subscribe(data=>{
-
+      this.service.dadosApi(dados,'api_usuario.php').subscribe(data =>{
+        
         if(data['result']=='0'){
-            this.ionViewWillEnter();
+          this.ionViewWillEnter();
         }else{
           for(let usuario of data['result']){
-            this.usuarios.push(usuario);
+            this.usuarios.push(usuario[0]);
           }
         }
       });
     });
-  }//fim do metodo carregar
+  }// fim do método carregar
 
   editar(id, nome, usuario, senha_original, nivel){
     this.router.navigate(['add-usuario/'+id+'/'+nome+'/'+usuario+'/'+senha_original+'/'+nivel]);
@@ -66,7 +66,7 @@ ativar(id, ativo){
         requisicao:'excluir',
         id: id,
       };
-      this.service.dadosApi(dados, "usuario.php").subscribe(data=>{
+      this.service.dadosApi(dados, "api_usuario.php").subscribe(data=>{
         this.ionViewWillEnter();
       })
     });
@@ -77,7 +77,7 @@ ativar(id, ativo){
         requisicao:'ativar',
         id: id,
       };
-      this.service.dadosApi(dados, "usuario.php").subscribe(data=>{
+      this.service.dadosApi(dados, "api_usuario.php").subscribe(data=>{
         this.ionViewWillEnter();
       })
     });

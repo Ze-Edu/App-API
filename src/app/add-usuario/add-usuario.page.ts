@@ -35,9 +35,10 @@ nivel: string ;
         nome: this.nome,
         usuario: this.usuario,
         senha: this.senha,
-        nivel: this.nivel
+        nivel: this.nivel,
+        avatar:'SemFoto.png'
       }
-      this.service.dadosApi(dados, "usuario.php").subscribe(data=>{
+      this.service.dadosApi(dados, "api_usuario.php").subscribe(data=>{
         if(data['success']){
           this.router.navigate(['usuarios']);
           this.id=null;this.nome="";this.usuario="";this.senha="";this.nivel=""
@@ -53,9 +54,10 @@ nivel: string ;
         usuario: this.usuario,
         senha: this.senha,
         nivel: this.nivel,
-        id: this.id
+        id: this.id,
+        avatar:'SemFoto.png'
       };
-      this.service.dadosApi(dados,"usuario.php").subscribe(data=>{
+      this.service.dadosApi(dados,"api_usuario.php").subscribe(data=>{
         if(data['success']){
           this.router.navigate(['usuarios']);
         }

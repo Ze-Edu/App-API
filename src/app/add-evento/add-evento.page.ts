@@ -37,7 +37,7 @@ usuario_id: number;
         capacidade: this.capacidade,
         usuario_id: this.usuario_id
       }
-      this.service.dadosApi(dados, "evento.php").subscribe(data=>{
+      this.service.dadosApi(dados, "api_evento.php").subscribe(data=>{
         if(data['success']){
           this.router.navigate(['evento']);
           this.id=null;this.nome="";this.data="";this.capacidade=null;this.usuario_id=null
@@ -56,7 +56,7 @@ usuario_id: number;
         
       };
       console.log(dados);
-      this.service.dadosApi(dados,"evento.php").subscribe(data=>{
+      this.service.dadosApi(dados,"api_evento.php").subscribe(data=>{
         if(data['success']){
           this.router.navigate(['evento']);
           
@@ -66,4 +66,3 @@ usuario_id: number;
   }
 
 }
-
