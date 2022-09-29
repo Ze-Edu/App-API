@@ -9,6 +9,7 @@ import { PostService } from 'src/services/post.service';
   styleUrls: ['./evento.page.scss'],
 })
 export class EventoPage implements OnInit {
+  id: number;
   nome: string = "";
   limite: number = 10;
   inicial: number = 0;
@@ -31,32 +32,32 @@ export class EventoPage implements OnInit {
       this.router.navigate(['add-evento']);
     }
     carregar_eve() {
-      return new Promise(ret =>{
-        this.eventos=[];
+      return new Promise(ret => {
+        this.eventos = [];
         let dados = {
           requisicao: "listar_evento",
+          id: this.id,
           nome: this.nome,
           limit: this.limite,
           start: this.inicial
         };
-        this.service.dadosApi(dados,'api_evento.php').subscribe(data=>{
-  
-          if(data['result']=='0'){
-              this.ionViewWillEnter();
-          }else{
-            for(let evento of data['result']){
-              this.eventos.push(evento);
+        this.service.dadosApi(dados, 'api_evento.php').subscribe(data_evento => {
+          if (data_evento['result'] == '0') {
+            this.ionViewWillEnter();
+          } else {
+            for (let eventos of data_evento['result']) {
+              this.eventos.push(eventos);
             }
           }
         });
       });
     }//fim do metodo carregar
   
-    editar_eve(id, nome, data, capacidade, usuario_id){
-      this.router.navigate(['add-evento/'+id+'/'+nome+'/'+data+'/'+capacidade+'/'+usuario_id]);
+    editar_eve(id, nome, data, capacidade, usuario_id, imagem){
+      this.router.navigate(['add-evento/'+id+'/'+nome+'/'+data+'/'+capacidade+'/'+usuario_id+'/'+imagem]);
     }
-    mostrar_eve(id, nome, data, capacidade, usuario_id){
-      this.router.navigate(['mostrar-evento/'+id+'/'+nome+'/'+data+'/'+capacidade+'/'+usuario_id]);
+    mostrar_eve(id, nome, data, capacidade, usuario_id, imagem){
+      this.router.navigate(['mostrar-evento/'+id+'/'+nome+'/'+data+'/'+capacidade+'/'+usuario_id+'/'+imagem]);
   }
   
   ativar(id, ativo){

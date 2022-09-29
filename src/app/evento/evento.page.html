@@ -2,32 +2,40 @@
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-button>
-          <ion-menu-button></ion-menu-button>
+        <ion-menu-button></ion-menu-button>
       </ion-button>
     </ion-buttons>
     <ion-title>Lista de Eventos</ion-title>
     <ion-buttons slot="primary" (click)="addEvento()">
-      <ion-button>Novo
+      <ion-button
+        >Novo
         <ion-icon slot="end" name="add"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-row class="ion-padding" style="background-color: rgba(0, 0, 0, 0.2);">
-  <ion-input placeholder="Buscar" [(ngModel)]="nome" type="search" (input)="carregar_eve()" required></ion-input>
+<ion-row  class="ion-padding" style="background-color: rgba(0, 0, 0, 0.2);">
+  <ion-input
+    placeholder="Buscar"
+    [(ngModel)]="nome"
+    type="search"
+    (input)="carregar_eve()"
+    
+    required
+  ></ion-input>
   <ion-buttons (click)="carregar_eve()">
-    <ion-button>
+    <ion-button >
       <ion-icon slot="end" name="search"></ion-icon>
     </ion-button>
   </ion-buttons>
-  </ion-row>
+</ion-row>
   
   <ion-content>
     <ion-list>
       <ion-item-sliding *ngFor="let even of eventos">
         <ion-item-options side="start">
-          <ion-item-option (click)="editar_eve(even.id, even.nome, even.data, even.capacidade, even.usuario_id)">
+          <ion-item-option (click)="editar_eve(even.id, even.nome, even.data, even.capacidade, even.usuario_id, even.imagem)">
             Editar
           </ion-item-option>
         </ion-item-options>
